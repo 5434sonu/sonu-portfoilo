@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sonu kumar  | Portfolio 🚀</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #ffffff; color: #020617; line-height: 1.6; overflow-x: hidden; }
+
+    /* ===== INTERACTIVE RECTANGLE BACKGROUND ===== */
+    .rect-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .rect {
+      position: absolute;
+      width: 140px;
+      height: 90px;
+      border: 2px solid rgba(56,189,248,0.25);
+      border-radius: 16px;
+      animation: rectFloat 18s linear infinite;
+    }
+    @keyframes rectFloat {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-80px) rotate(180deg); }
+      100% { transform: translateY(0) rotate(360deg); }
+    }
+
+    /* ===== FLOATING BACKGROUND PARTICLES ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(#38bdf8 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.08;
+      animation: drift 40s linear infinite;
+      z-index: -1;
+    }
+    @keyframes drift {
+      from { transform: translateY(0); }
+      to { transform: translateY(-200px); }
+    }
+
+    /* ===== ENTRY ANIMATIONS ===== */
+    header { padding: 80px 20px; text-align: center; animation: fadeDown 1.2s ease; }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-30px);} to { opacity: 1; transform: translateY(0);} }
+
+    section { padding: 60px 20px; max-width: 1100px; margin: auto; opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+    section.show { opacity: 1; transform: translateY(0); }
+
+    /* ===== PROFILE PHOTO FLOAT ===== */
+    .profile-pic { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid #38bdf8; margin-bottom: 20px; animation: float 4s ease-in-out infinite; }
+    @keyframes float { 0% { transform: translateY(0);} 50% { transform: translateY(-12px);} 100% { transform: translateY(0);} }
+
+    /* ===== ABOUT IMAGE BLACK & WHITE TO COLOR ===== */
+    .about-img-wrap{width:260px;border-radius:20px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.2);}
+    .about-img{width:100%;display:block;filter:grayscale(100%);transition:all .6s ease;}
+    .about-img-wrap:hover .about-img{filter:grayscale(0%);transform:scale(1.05);}
+
+    .resume-btn{
+      display:inline-block;
+      margin-top:18px;
+      padding:12px 26px;
+      background:linear-gradient(135deg,#4f46e5,#9333ea);
+      color:#fff;
+      border-radius:12px;
+      font-weight:600;
+      box-shadow:0 12px 30px rgba(79,70,229,.45);
+      transition:all .35s ease;
+    }
+    .resume-btn:hover{
+      transform:translateY(-6px) scale(1.06);
+      box-shadow:0 22px 45px rgba(147,51,234,.6);
+    }
+
+    /* ===== TEXT STYLES ===== */
+    header h1 { font-size: 3.2rem; color: #38bdf8; cursor:pointer; transition: all .4s ease; text-transform: uppercase; letter-spacing: 2px; }
+    header h1:hover{ transform: scale(1.08) rotate(-2deg); text-shadow:0 10px 30px rgba(56,189,248,.6); }
+    .highlight-name { color: #4f46e5; }
+
+    .about-btn{
+      display:inline-block;
+      margin:20px auto;
+      padding:12px 26px;
+      background:linear-gradient(135deg,#38bdf8,#9333ea);
+      color:#fff;
+      border-radius:30px;
+      font-weight:600;
+      box-shadow:0 10px 30px rgba(56,189,248,.45);
+      transition:all .35s ease;
+      animation:pulse 3s infinite;
+    }
+    .about-btn:hover{
+      transform:translateY(-6px) scale(1.08);
+      box-shadow:0 20px 45px rgba(147,51,234,.6);
+    }
+
+    header p { max-width: 700px; margin: 20px auto; }
+    h2 { color: #38bdf8; margin-bottom: 20px; font-size: 2rem; position: relative; display: inline-block; }
+    h2::after { content: ''; position: absolute; width: 50%; height: 4px; background: #4f46e5; bottom: -5px; left: 0; border-radius: 2px; }
+
+    /* ===== CARDS ===== */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .card { background: linear-gradient(135deg, #ffffff, #f1f5ff); color:#020617; border:1px solid rgba(56,189,248,0.25); padding: 25px; border-radius: 12px; box-shadow: 0 0 20px rgba(56,189,248,0.1); transition: transform 0.4s ease, box-shadow 0.4s ease; }
+    .card:hover { transform: translateY(-12px) scale(1.04); box-shadow: 0 20px 45px rgba(56,189,248,0.3); }
+
+    /* ===== EDUCATION IMAGES ===== */
+    .edu-gallery { margin-top: 30px; }
+    .edu-img { width: 100%; height: 200px; object-fit: cover; border-radius: 14px; animation: zoomFloat 6s ease-in-out infinite; box-shadow: 0 0 25px rgba(56,189,248,0.25); }
+    @keyframes zoomFloat {
+      0% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.05) translateY(-8px); }
+      100% { transform: scale(1) translateY(0); }
+    }
+
+    footer { text-align: center; padding: 40px; background: #020617; color: white; margin-top: 40px; }
+    .social-footer a { margin: 0 15px; display: inline-block; color: #38bdf8; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+    .social-footer a:hover { transform: translateY(-5px); filter: drop-shadow(0 0 8px #38bdf8); }
+    
+    .social-links a { display: inline-flex; align-items: center; gap: 8px; margin: 0 10px; padding: 8px 15px; border-radius: 25px; border: 1px solid rgba(56,189,248,0.3); transition: all 0.3s ease; color: #334155; }
+    .social-links a:hover {
+      background: rgba(56,189,248,0.15);
+      transform: translateY(-5px);
+      border-color: #38bdf8;
+    }
+
+    /* ===== BRAND COLORS ===== */
+    .linkedin { color: #0A66C2; }
+    .github { color: #333; }
+    .instagram { color: #E1306C; }
+    .whatsapp { color: #25D366; }
+    .call { color: #22c55e; }
+
+    /* ===== EXPERIENCE TIMELINE ===== */
+    .timeline { position: relative; margin: 40px auto; max-width: 900px; }
+    .timeline::after { content: ''; position: absolute; width: 4px; background: #38bdf8; top: 0; bottom: 0; left: 50%; margin-left: -2px; }
+    .timeline-item { padding: 20px 40px; position: relative; width: 50%; }
+    .timeline-item.left { left: 0; }
+    .timeline-item.right { left: 50%; }
+    .timeline-item::after {
+      content: '\f0b1'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+      position: absolute; width: 40px; height: 40px; right: -20px; background: #020617; border: 3px solid #38bdf8;
+      top: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #38bdf8; z-index: 1;
+    }
+    .timeline-item.right::after { left: -20px; }
+    .timeline-content { 
+        background: #f59e0b; color: #020617; padding: 25px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+        transition: transform 0.4s ease;
+    }
+    .timeline-content:hover { transform: scale(1.05); }
+    .timeline-content h3 { font-size: 1.3rem; margin-bottom: 5px; }
+    .timeline-content span { font-weight: 600; display: block; margin-bottom: 10px; font-size: 0.9rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 5px; }
+
+    @media screen and (max-width: 768px) {
+      .timeline::after { left: 20px; }
+      .timeline-item { width: 100%; padding-left: 60px; padding-right: 20px; }
+      .timeline-item.right { left: 0; }
+      .timeline-item::after { left: 0; }
+      header h1 { font-size: 2.2rem; }
+    }
+
+    /* ===== CONTACT SECTION ===== */
+    .contact-section { background: #f8fafc; border-radius: 20px; padding: 60px 40px; border: 1px solid #e2e8f0; }
+    .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .contact-form { background: #ffffff; padding: 30px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+    .input-group { display: flex; align-items: center; gap: 12px; background: #f1f5f9; padding: 14px; border-radius: 10px; margin-bottom: 16px; border: 1px solid transparent; transition: all 0.3s; }
+    .input-group:focus-within { border-color: #38bdf8; background: #fff; box-shadow: 0 0 0 4px rgba(56,189,248,0.1); }
+    .input-group input, .input-group textarea { border: none; outline: none; background: transparent; width: 100%; font-size: 0.95rem; }
+    .submit-btn {
+      background: linear-gradient(135deg, #4f46e5, #9333ea); color: #fff; border: none; padding: 15px 30px; border-radius: 12px;
+      cursor: pointer; font-size: 1rem; font-weight: 600; width: 100%; transition: all 0.3s;
+    }
+    .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(79,70,229,0.3); }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(56,189,248,0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(56,189,248,0); }
+      100% { box-shadow: 0 0 0 0 rgba(56,189,248,0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="rect-bg">
+  <span class="rect" style="top:10%;left:8%;animation-duration:22s"></span>
+  <span class="rect" style="top:40%;left:75%;animation-duration:26s"></span>
+  <span class="rect" style="top:70%;left:15%;animation-duration:24s"></span>
+  <span class="rect" style="top:25%;right:5%;animation-duration:28s"></span>
+</div>
+
+<header>
+  <!-- Using sonu.jpg as requested -->
+  <img src="pic 1.jpeg" alt="Sonu Kumar" class="profile-pic" onerror="this.src='https://ui-avatars.com/api/?name=sonu+kumar&background=38bdf8&color=fff&size=160'">
+  <h1>Sonu <span class="highlight-name">Kumar</span></h1>
+  <paid="typing" style="font-weight: 600; font-size: 1.2rem; color: #475569;"></p>
+  <p><i class="fas fa-location-dot"></i> Sitamarhi, Bihar - 843320 &nbsp; | &nbsp; <i class="fas fa-phone"></i> +91-7079927785</p>
+  <p><i class="fas fa-envelope"></i> sonukumarsah843333@gmail.com</p>
+  <a href="#about" class="about-btn">Explore My Work ↓</a>
+  <div class="social-links" style="margin-top:20px;">
+    <a href="https://linkedin.com/in/sonu-kumar-8b373735" target="_blank"><i class="fab fa-linkedin linkedin"></i> LinkedIn</a>
+    <a href="https://github.com/5434sonu" target="_blank"><i class="fab fa-github github"></i> GitHub</a>
+    <a href="https://instagram.com/sonu_kumar5105" target="_blank"><i class="fab fa-instagram instagram"></i> Instagram</a>
+    <a href="https://wa.me/917079927785" target="_blank"><i class="fab fa-whatsapp whatsapp"></i> WhatsApp</a>
+  </div>
+</header>
+
+<section id="about">
+  <h2>👨‍💻 About Me</h2>
+  <div style="display:grid;grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));gap:40px;align-items:center;">
+    <div class="about-img-wrap">
+      <img src="pic 1.jpeg" alt="Sonu Kumar" class="about-img" onerror="this.src='https://via.placeholder.com/300x400?text=Priyanshu+Kumar'">
+    </div>
+    <div>
+      <h3 style="margin-bottom:10px; font-size: 1.8rem;">Career Objective</h3>
+      <p style="font-size: 1.1rem; color: #334155; margin-bottom: 20px;">
+        Eager to apply my strong work ethic and enthusiasm for learning to a <strong>Software Developer role</strong>, contributing to the development of high-quality software solutions. I am a 2nd-year CSE student passionate about building efficient full-stack applications and solving complex problems.
+      </p>
+      <div style="background: #f1f5f9; padding: 20px; border-radius: 12px; border-left: 5px solid #4f46e5;">
+        <p><strong><i class="fas fa-graduation-cap"></i> Current Status:</strong> 2nd Year B.Tech Student</p>
+        <p><strong><i class="fas fa-star"></i> Focus:</strong> Full-Stack Development & Problem Solving</p>
+      </div>
+      <!-- Resume Link Added Here -->
+      <a href="Sonu kumar.pdf" target="_blank" class="resume-btn">Download Resume →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>🛠️ Technical Skills</h2>
+  <div class="grid">
+    <div class="card">
+      <i class="fas fa-code" style="font-size: 2rem; color: #4f46e5; margin-bottom: 15px;"></i>
+      <h3>Coding</h3>
+      <p>Problem Solving & Logic Building</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-laptop-code" style="font-size: 2rem; color: #4f46e5; margin-bottom: 15px;"></i>
+      <h3>Web Development</h3>
+      <p>  HTML, CSS, MySQL, JavaScript,  </p>
+    </div>
+    <div class="card">
+      <i class="fas fa-desktop" style="font-size: 2rem; color: #4f46e5; margin-bottom: 15px;"></i>
+      <h3>Computer Apps</h3>
+      <p>Diploma in Computer Applications (DCA) - Score: 91%</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>🚀 Featured Projects</h2>
+  <div class="grid">
+    <div class="card" style="border-top: 5px solid #4f46e5;">
+      <h3>Roots Data-Bridge</h3>
+      <p style="color: #4f46e5; font-weight: 600; margin-bottom: 10px;">Lead Generation System</p>
+      <p>Built a full-stack platform using <strong>PHP, MySQL, and jQuery</strong>. Features include interactive market CAGR/Size previewers and a custom lead-gate mechanism to secure data.</p>
+    </div>
+    <div class="card" style="border-top: 5px solid #9333ea;">
+      <h3>OccuFind</h3>
+      <p style="color: #9333ea; font-weight: 600; margin-bottom: 10px;">Campus Utility Platform</p>
+      <p>Developed a web application using <strong>Python and Flask</strong>. Includes a real-time classroom occupancy tracker and a QR-code-based lost & found system for students.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>🎓 Education</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>B.Tech in CSE</h3>
+      <p><strong>I.K. Gujral Punjab Technical University</strong></p>
+      <p>2024 - 2028 </p>
+      <p style="color: #4f46e5; font-weight: 600;">Current GPA: 7.6 SGPA</p>
+    </div>
+    <div class="card">
+      <h3>DCA</h3>
+      <p><strong>OCSM</strong></p>
+      <p>Completed: 2023</p>
+      <p style="color: #22c55e; font-weight: 600;">Score: 91%</p>
+    </div>
+    <div class="card">
+      <h3>Schooling (BSEB)</h3>
+      <p><strong>Intermediate (XII):</strong> 62% (2024)</p>
+      <p><strong>Matriculation (X):</strong> 66% (2022)</p>
+    </div>
+  </div>
+  <!-- Educational Gallery Placeholder -->
+  <div class="grid edu-gallery">
+    <img src="campus1.jpg" class="edu-img" alt="University Life" onerror="this.src='https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=500&q=80'">
+    <img src="campus2.jpg" class="edu-img" alt="Coding Session" onerror="this.src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=500&q=80'">
+    <img src="campus3.jpg" class="edu-img" alt="Achievement" onerror="this.src='https://images.unsplash.com/photo-1523050335456-adabbf72c7bb?auto=format&fit=crop&w=500&q=80'">
+  </div>
+</section>
+
+<section>
+    <div class="timeline-item right">
+      <div class="timeline-content">
+        <span>june- 2024</span>
+        <h3>Data Operator</h3> 
+        <p><strong>medical shop</strong></p>
+      </div>
+    </div>
+    <div class="timeline-item left">
+      <div class="timeline-content">
+        <span>2024</span>
+        <h3>Assistant Electrician</h3>
+        <p><strong>Polycab Foundation</strong></p>
+        <p>Completed specialized technical training and served as an Assistant Electrician on field assignments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>✨ Soft Skills & Interests</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Soft Skills</h3>
+      <ul style="list-style: none; padding-top: 10px;">
+        <li><i class="fas fa-check-circle" style="color: #22c55e;"></i> Communication Skills</li>
+        <li><i class="fas fa-check-circle" style="color: #22c55e;"></i> Time Management</li>
+        <li><i class="fas fa-check-circle" style="color: #22c55e;"></i> Critical Thinking</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Personal Hobbies</h3>
+      <ul style="list-style: none; padding-top: 10px;">
+        <li><i class="fas fa-camera" style="color: #4f46e5;"></i> Photography Drawing</li>
+        <li><i class="fas fa-baseball-bat-ball" style="color: #4f46e5;"></i> Playing cricket</li>
+        <li><i class="fas fa-car" style="color: #4f46e5;"></i> Driving , msuic</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Languages</h3>
+      <p><strong>Hindi:</strong> Fluent</p>
+      <p><strong>English:</strong> Fluent</p>
+      <p><strong>Punjab</strong></p>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section">
+  <h2 style="text-align: center; width: 100%;">Get In Touch</h2>
+  <p style="text-align: center; margin-bottom: 30px;">Have a question or want to work together?</p>
+  <div class="contact-wrapper">
+    <div class="contact-illustration">
+      <img src="https://cdni.iconscout.com/illustration/premium/thumb/contact-us-illustration-download-in-svg-png-gif-file-formats--call-logo-customer-service-support-pack-business-illustrations-4730164.png" alt="Contact" style="width: 100%;">
+    </div>
+    <form class="contact-form" name="contact" data-netlify="true">
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" name="name" placeholder="Full Name" required>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" name="email" placeholder="Email Address" required>
+      </div>
+      <div class="input-group textarea">
+        <i class="fas fa-message"></i>
+        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="social-footer">
+    <a href="https://linkedin.com/in/sonu-kumar-8b373735" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    <a href="https://github.com/5434sonu" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    <a href="https://instagram.com/sonu_kumar5105" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://wa.me/917079927785" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+  <p style="margin-top: 20px; opacity: 0.7;">© 2026 Sonu Kumar | Designed with Passion</p>
+</footer>
+
+<script>
+  // ===== TYPING ANIMATION =====
+  const text = "Aspiring Software Developer | CSE Student | Full Stack Enthusiast";
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      document.getElementById("typing").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, 100);
+    }
+  }
+  window.onload = type;
+
+  // ===== TAB VISIBILITY TITLE CHANGE =====
+  const originalTitle = document.title;
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      document.title = '👋 Come back to see my work!';
+    } else {
+      document.title = originalTitle;
+    }
+  });
+
+  // ===== SCROLL REVEAL =====
+  const sections = document.querySelectorAll('section');
+  const reveal = () => {
+    const trigger = window.innerHeight * 0.85;
+    sections.forEach(sec => {
+      const top = sec.getBoundingClientRect().top;
+      if (top < trigger) sec.classList.add('show');
+    });
+  };
+  window.addEventListener('scroll', reveal);
+  reveal();
+
+  // ===== DYNAMIC IMAGE DELAY =====
+  document.querySelectorAll('.edu-img').forEach(img => {
+    img.style.animationDelay = (Math.random() * 2) + 's';
+  });
+</script>
+</body>
+</html>
